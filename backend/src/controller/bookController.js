@@ -5,7 +5,7 @@ class BookController {
     try {
       const book = new Book(req.body);
       await book.save();
-      res.status(201).send({ message: 'Book created successfully', book });
+      return res.status(201).send({ message: 'Book created successfully', book });
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal server error');
@@ -15,7 +15,7 @@ class BookController {
   async getAllBooks(req, res) {
     try {
       const books = await Book.find();
-      res.status(200).send({count: books.length, books});
+      return res.status(200).send({count: books.length, books});
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal server error');
@@ -28,7 +28,7 @@ class BookController {
     if (!book) {
       return res.status(404).send('Book not found');
     }
-    res.status(200).send(book);
+    return res.status(200).send(book);
   } catch (err) {
     console.error(err);
     if (err.name === 'CastError') {
@@ -44,7 +44,7 @@ class BookController {
       if (!book) {
         return res.status(404).send('Book not found');
       }
-      res.status(200).send({ message: 'Book updated successfully', book });
+      return res.status(200).send({ message: 'Book updated successfully', book });
     } catch (err) {
       console.error(err);
       if (err.name === 'CastError') {
@@ -60,7 +60,7 @@ class BookController {
       if (!book) {
         return res.status(404).send('Book not found');
       }
-      res.status(200).send({ message: 'Book deleted successfully', book });
+      return res.status(200).send({ message: 'Book deleted successfully', book });
     } catch (err) {
       console.error(err);
       if (err.name === 'CastError') {
