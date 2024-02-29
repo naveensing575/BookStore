@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-// import bookRoutes from './src/routes/bookRoutes';
 import cors from 'cors';
 
 dotenv.config();
@@ -122,9 +121,6 @@ app.delete('/books/:id', async (req, res) => {
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
-
-// Use bookRoutes
-// app.use('/books', bookRoutes);
 
 app.get('/', (request, response) => {
   console.log(request);
