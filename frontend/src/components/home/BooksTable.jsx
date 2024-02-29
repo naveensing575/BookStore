@@ -5,6 +5,7 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 
 const BooksTable = ({ books }) => {
+  console.log(books);
   return (
     <table className='w-full border-separate border-spacing-2'>
       <thead>
@@ -21,7 +22,7 @@ const BooksTable = ({ books }) => {
         </tr>
       </thead>
       <tbody>
-        {books.map((book, index) => (
+        {books?.map((book, index) => (
           <tr key={book._id} className='h-8'>
             <td className='border border-slate-700 rounded-md text-center'>
               {index + 1}
