@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
-const CreateBooks = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publishYear, setPublishYear] = useState('');
-  const [loading, setLoading] = useState(false);
+const CreateBooks: React.FC = () => {
+  const [title, setTitle] = useState<string>('');
+  const [author, setAuthor] = useState<string>('');
+  const [publishYear, setPublishYear] = useState<number | ''>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -29,7 +29,6 @@ const CreateBooks = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
         enqueueSnackbar('Error', { variant: 'error' });
         console.log(error);
       });
@@ -64,7 +63,7 @@ const CreateBooks = () => {
           <input
             type='number'
             value={publishYear}
-            onChange={(e) => setPublishYear(e.target.value)}
+            onChange={(e) => setPublishYear(Number(e.target.value))}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />
         </div>
@@ -76,4 +75,4 @@ const CreateBooks = () => {
   );
 }
 
-export default CreateBooks
+export default CreateBooks;

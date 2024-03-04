@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
-const DeleteBook = () => {
-  const [loading, setLoading] = useState(false);
+const DeleteBook: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const { enqueueSnackbar } = useSnackbar();
 
   const handleDeleteBook = () => {
@@ -43,7 +43,7 @@ const DeleteBook = () => {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default DeleteBook;

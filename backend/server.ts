@@ -1,17 +1,22 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
-const DB_URL = process.env.mongoDB_URL;
+const PORT = process.env.PORT ?? 4000;
+const DB_URL = process.env.mongoDB_URL as string;
 
 app.use(express.json());
 app.use(cors());
 
+interface IBook extends Document {
+  title: string;
+  author: string;
+  publishYear: number;
+}
 
 // Define Book model schema
 const bookSchema = new mongoose.Schema({
@@ -20,12 +25,12 @@ const bookSchema = new mongoose.Schema({
   publishYear: Number
 });
 
-const Book = mongoose.model('Book', bookSchema);
+const Book = mongoose.model<IBook>('Book', bookSchema);
 
 // Create a new book
-app.post('/books', async (req, res) => {
+app.post('/books', async (req: Request, res: Response) => {
   try {
-    const { title, author, publishYear } = req.body;
+    const { title, author, publishYear } = req.body as { title: string; author: string; publishYear: number };
 
     if (!title || !author || !publishYear) {
       return res.status(400).send({
@@ -40,14 +45,14 @@ app.post('/books', async (req, res) => {
     });
 
     return res.status(201).send(newBook);
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
 
 // Get all books
-app.get('/books', async (req, res) => {
+app.get('/books', async (req: Request, res: Response) => {
   try {
     const books = await Book.find({});
 
@@ -55,14 +60,14 @@ app.get('/books', async (req, res) => {
       count: books.length,
       data: books,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
 
 // Get a book by ID
-app.get('/books/:id', async (req, res) => {
+app.get('/books/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -73,17 +78,17 @@ app.get('/books/:id', async (req, res) => {
     }
 
     return res.status(200).json(book);
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
 
 // Update a book
-app.put('/books/:id', async (req, res) => {
+app.put('/books/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { title, author, publishYear } = req.body;
+    const { title, author, publishYear } = req.body as { title: string; author: string; publishYear: number };
 
     if (!title || !author || !publishYear) {
       return res.status(400).send({
@@ -98,14 +103,14 @@ app.put('/books/:id', async (req, res) => {
     }
 
     return res.status(200).json(updatedBook);
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
 
 // Delete a book
-app.delete('/books/:id', async (req, res) => {
+app.delete('/books/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -116,13 +121,13 @@ app.delete('/books/:id', async (req, res) => {
     }
 
     return res.status(200).json({ message: 'Book deleted successfully' });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
 
-app.get('/', (request, response) => {
+app.get('/', (request: Request, response: Response) => {
   console.log(request);
   return response.status(234).send('Welcome To MERN Stack Tutorial');
 });

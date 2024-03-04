@@ -1,9 +1,21 @@
-/* eslint-disable react/prop-types */
+import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { PiBookOpenTextLight } from 'react-icons/pi';
 import { BiUserCircle } from 'react-icons/bi';
 
-const BookModal = ({ book, onClose }) => {
+interface Book {
+  _id: string;
+  title: string;
+  author: string;
+  publishYear: number;
+}
+
+interface BookModalProps {
+  book: Book;
+  onClose: () => void;
+}
+
+const BookModal: React.FC<BookModalProps> = ({ book, onClose }) => {
   return (
     <div
       className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center'

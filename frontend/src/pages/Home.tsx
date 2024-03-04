@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
@@ -6,10 +6,10 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import BooksTable from '../components/home/BooksTable';
 import BooksCard from '../components/home/BooksCard';
 
-const Home = () => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState('table');
+const Home: React.FC = () => {
+  const [books, setBooks] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showType, setShowType] = useState<string>('table');
 
   useEffect(() => {
     setLoading(true);
@@ -24,6 +24,13 @@ const Home = () => {
         setLoading(false);
       });
   }, []);
+
+  let booksComponent;
+  if (loading) {
+    booksComponent = <Spinner />;
+  } else {
+    booksComponent = showType === 'table' ? <BooksTable books={books} /> : <BooksCard books={books} />;
+  }
 
   return (
     <div className='p-4'>
@@ -47,13 +54,7 @@ const Home = () => {
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>
       </div>
-      {loading ? (
-        <Spinner />
-      ) : showType === 'table' ? (
-        <BooksTable books={books} />
-      ) : (
-        <BooksCard books={books} />
-      )}
+      {booksComponent}
     </div>
   );
 };
