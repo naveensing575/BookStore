@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+#Auth0 creds
+auth0.config.tsx
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -5,13 +5,14 @@ import "./index.css";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
+import { clientId, domain } from "../auth0.config";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
   <Auth0Provider
-    domain="dev-ve53o0frwgysxy5v.us.auth0.com"
-    clientId="G2Tkzis6n4ggvXLc1oNeS5INRHh8y2md"
+    domain={domain}
+    clientId={clientId}
     authorizationParams={{
       redirect_uri: window.location.origin,
     }}
