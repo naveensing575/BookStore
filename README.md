@@ -39,9 +39,9 @@ npm install
    - Create a `.env` file in the `server` directory.
    - Define the following variables:
 
-mongodb+srv://usernam:pass@mongo.x2o6ohj.mongodb.net/?retryWrites=true&w=majority&appName=your_app_name
+a). mongodb+srv://usernam:pass@mongo.x2o6ohj.mongodb.net/?retryWrites=true&w=majority&appName=your_app_name
 
-PORT = 4000
+b). PORT = 4000
 
 
 5. Run the application:
