@@ -40,6 +40,7 @@ npm install
    - Define the following variables:
 
 mongodb+srv://usernam:pass@mongo.x2o6ohj.mongodb.net/?retryWrites=true&w=majority&appName=your_app_name
+
 PORT = 4000
 
 
