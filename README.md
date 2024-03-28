@@ -4,7 +4,7 @@ Bookstore is a web application built using the MERN stack, TypeScript, and Tailw
 
 ## Features
 
-- Book catalog: Display a list of books with details such as title, author, date in a table format where you can rearrange your order of perfernce using the drag and drop feature.
+- Book Catalog: Display a list of books with details such as title, author, and date in a table format where you can rearrange your order of performance using the drag-and-drop feature.
 - CRUD operations for books: Implement Create, Read, Update, and Delete operations for managing books.
 
 ## Technologies Used
@@ -39,9 +39,9 @@ npm install
    - Create a `.env` file in the `server` directory.
    - Define the following variables:
 
-a). mongodb+srv://usernam:pass@mongo.x2o6ohj.mongodb.net/?retryWrites=true&w=majority&appName=your_app_name
-
-b). PORT = 4000
+      a). mongodb+srv://usernam:pass@mongo.x2o6ohj.mongodb.net/?retryWrites=true&w=majority&appName=your_app_name
+      
+      b). PORT = 4000
 
 
 5. Run the application:
